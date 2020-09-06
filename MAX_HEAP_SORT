@@ -1,0 +1,76 @@
+class Solution:
+	
+	def solve(self,A):
+		print(A)
+		build_heap(A)
+		
+		print("done==============================>",A)
+
+		heap_insert(A,11)
+		
+		print("done==============================>",A)
+		l=len(A)
+		i=l-1
+
+		while i>=1:
+			A[0],A[i]=A[i],A[0]
+			l-=1
+			max_heap(A,0,l)
+			print("back====>>")
+			i-=1
+		
+		print(A)
+		
+		return A
+
+
+def heap_insert(A,item):
+	A.append(item)
+	l=len(A)
+	i=(l//2)-1
+	pos=l-1
+	
+	while i>=0 and A[i]<A[pos]:
+		print("here",i)
+		A[i],A[pos]=A[pos],A[i]
+		pos=i
+		i=i//2
+	
+	
+	
+def build_heap(A):
+	i=0
+	j=len(A)//2-1
+	l=len(A)
+	
+	while j>=0:
+		max_heap(A,j,l)
+		j-=1
+
+
+def max_heap(A,i,l):
+	left=2*i+1
+	right=2*i+2
+	
+	print("=====>",A,A[i],i)
+	
+	if left<l and A[left]>A[i]:
+		largest=left
+	else:
+		largest=i
+	
+	if right<l and A[right]>A[largest]:
+		largest=right
+	
+	if largest!=i:
+		print("here")
+		A[largest],A[i]=A[i],A[largest]
+		max_heap(A,largest,l)
+		
+
+
+
+A=[3,10,2,4,1,2,6,9,4,7,8]
+s=Solution()
+print(s.solve(A))
+
