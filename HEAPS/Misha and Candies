@@ -1,0 +1,32 @@
+
+import heapq
+class Solution:
+    # @param A : list of integers
+    # @return an integer
+    def solve(self,A, B):
+        
+        pq = []
+        
+        for x in A:
+            heapq.heappush(pq, x)
+        
+
+        i=1
+        sum=0
+        while(len(pq)>0 and B>=pq[0]):
+            
+            l1=heapq.heappop(pq)
+            
+            
+            if l1>=2:
+            	bl=l1//2
+            	sum+=bl
+            else:
+            	bl=l1
+            
+            if len(pq)>=1:
+            	l2=heapq.heappop(pq)+(l1+1)//2
+            	heapq.heappush(pq,l2)
+            
+        
+        return sum
