@@ -1,0 +1,66 @@
+class Solution:
+	
+	def solve(self,A):
+		print(A)
+		build_heap(A)
+		
+		print("done==============================>",A)
+
+		heap_insert(A,1)
+		
+		print("done==============================>",A)
+
+		
+		return A
+
+
+def heap_insert(A,item):
+	A.append(item)
+	l=len(A)
+	i=(l//2)-1
+	pos=l-1
+	
+	while i>=0 and A[i]>A[pos]:
+		print("here",i)
+		A[i],A[pos]=A[pos],A[i]
+		pos=i
+		i=i//2
+	
+	
+	
+def build_heap(A):
+	i=0
+	j=len(A)//2-1
+	l=len(A)
+	
+	while j>=0:
+		min_heap(A,j,l)
+		j-=1
+
+
+def min_heap(A,i,l):
+	left=2*i+1
+	right=2*i+2
+	
+	print("=====>",A,A[i],i)
+	
+	if left<l and A[left]<A[i]:
+		smallest=left
+	else:
+		smallest=i
+	
+	if right<l and A[right]<A[smallest]:
+		smallest=right
+	
+	if smallest!=i:
+		print("here")
+		A[smallest],A[i]=A[i],A[smallest]
+		min_heap(A,smallest,l)
+		
+
+
+
+A=[3,10,2,4,1,2,6,9,4,7,8]
+s=Solution()
+print(s.solve(A))
+
